@@ -14,6 +14,7 @@ interface PostCardProps {
 const PostCard = ({post} : PostCardProps) => {
 
     const [liked, setLiked] = useState(false);
+    const [showComments, setShowComments] = useState(false)
     
     
    
@@ -34,14 +35,14 @@ const PostCard = ({post} : PostCardProps) => {
             <FavoriteIcon />
             </IconButton>
             <span>{3}</span>
-            <IconButton>
+            <IconButton onClick={() => setShowComments(!showComments)}>
             <ChatBubbleOutlineIcon />
             </IconButton>
             <span>{5}</span>
         </CardActions>
         </Card>
         {/* Comments go here */}
-        <PostComments postId={post.id} />
+        {/* { showComments && <PostComments postId={post.id} />} */}
     </>
   )
 }

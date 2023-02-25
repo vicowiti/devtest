@@ -18,7 +18,7 @@ const PostComments = ({postId}: PostCommentsProps) => {
 
     useEffect(() => {
         dispatch<any>(getComments(postId))
-    },[])
+    },[dispatch])
 
     const data = useSelector((state: RootState) => state.comments)
     
