@@ -1,8 +1,20 @@
 import React from 'react'
+import { BrowserRouter, Routes,Route } from 'react-router-dom'
+import NavBar from './components/navbar/NavBar'
+import Feed from './pages/Feed'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 const App = () => {
   return (
-    <div>App</div>
+    <BrowserRouter>
+    <NavBar/>
+      <Routes>
+        <Route path='/' element={<Feed/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/register' element={<Register/>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
