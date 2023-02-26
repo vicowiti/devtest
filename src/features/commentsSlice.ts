@@ -9,11 +9,19 @@ const initialState:CommentState = {
     isPending: false,
 }
 
-export const getComments = createAsyncThunk('getComments', async (postId: number) => {
-
+export const getComments = createAsyncThunk('getComments', async (postId: number, thunkApi) => {
+console.log('id', postId);
+ try {
     const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
 
     return response.data
+ } catch (error) {
+    
+    return thunkApi.rejectWithValue(1)
+ }
+   
+
+    
 })
 
 const commentSlice = createSlice({

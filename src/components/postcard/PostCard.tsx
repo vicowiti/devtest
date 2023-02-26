@@ -1,28 +1,42 @@
-import React, { useState} from 'react'
-import { Post } from '../../interfaces'
+import React, { useState, useEffect} from 'react'
+import { CommentState, Post } from '../../interfaces'
 import { Card, CardHeader, CardContent, CardActions } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import PostComments from '../postcomments/PostComments';
+import { useDispatch, useSelector } from 'react-redux';
+import { getComments } from '../../features/commentsSlice';
 
 
 interface PostCardProps {
     post : Post
 }
 
+interface RootState {
+  comments : CommentState
+}
+
 const PostCard = ({post} : PostCardProps) => {
 
     const [liked, setLiked] = useState(false);
     const [showComments, setShowComments] = useState(false)
+    const [commentCount, setCommentCount] = useState(0)
     
+    const dispatch = useDispatch()
+    const commentData = useSelector((state: RootState) => state.comments)
     
-   
-
     const handleLike = () => {
       setLiked(!liked);
     };
 
+
+    const handleComments = async() => {
+      await dispatch<any>(getComments(post.id))
+      setShowComments(!showComments)
+    }
+
+  
   return (
     <>
         <Card>
@@ -31,18 +45,18 @@ const PostCard = ({post} : PostCardProps) => {
             <p>{post.body}</p>
         </CardContent>
         <CardActions disableSpacing>
-            <IconButton onClick={handleLike} color={liked ? "secondary" : "default"}>
+            <IconButton onClick={handleLike} color={liked ? "warning" : "default"}>
             <FavoriteIcon />
             </IconButton>
-            <span>{3}</span>
-            <IconButton onClick={() => setShowComments(!showComments)}>
+            <span>{liked ? 1 : 0}</span>
+            <IconButton onClick={handleComments}>
             <ChatBubbleOutlineIcon />
             </IconButton>
-            <span>{5}</span>
+            <span>{commentData.comments?.length}</span>
         </CardActions>
         </Card>
         {/* Comments go here */}
-        {/* { showComments && <PostComments postId={post.id} />} */}
+        { showComments && <PostComments commentData={commentData}/>}
     </>
   )
 }
