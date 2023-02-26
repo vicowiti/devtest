@@ -15,11 +15,14 @@ export interface PostsState  {
 }
 
 export interface CommentState {
-    comments: Comment[],
+    comments: Comment[]
     comment: Comment | null
     isPending: boolean
     isError : boolean
 }
+
+
+
 
  export interface CreatedPost {
     title: string

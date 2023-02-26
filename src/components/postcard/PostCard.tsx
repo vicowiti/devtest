@@ -38,8 +38,8 @@ const PostCard = ({post} : PostCardProps) => {
 
   
   return (
-    <>
-        <Card>
+    <div className='mb-3'>
+        <Card >
             <CardHeader title={post.title} />
         <CardContent>
             <p>{post.body}</p>
@@ -57,7 +57,7 @@ const PostCard = ({post} : PostCardProps) => {
         </Card>
         {/* Comments go here */}
         { showComments && <PostComments commentData={commentData}/>}
-    </>
+    </div>
   )
 }
 

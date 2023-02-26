@@ -22,7 +22,7 @@ const PostComments = ({commentData}: PostCommentsProps) => {
     
     
   return (
-    <div>
+    <div className='ml-5'>
         {commentData.comments?.map(comment => <CommentCard key={comment.id} comment={comment}/>)}
     </div>
   )

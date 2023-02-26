@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {Stack} from '@mui/material'
+import {Grid, Stack} from '@mui/material'
 import CreatePost from '../components/createpost/CreatePost'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPosts } from '../features/postsSlice'
@@ -23,12 +23,22 @@ const Feed = () => {
   
   
   return (
-    <Stack>
-      <CreatePost/>
-      <PostList allPosts={allPosts}/>
+    <Grid container spacing={2} margin={4}>
+
+      <Grid item xs={12} lg={3}>
+        <CreatePost/>
+      </Grid>
+      <Grid item xs={12} lg={5}>
+        <PostList allPosts={allPosts}/>
+      </Grid>
+      <Grid item>
+
+      </Grid>
+      
+      
   
 
-    </Stack>
+    </Grid>
   )
 }
 

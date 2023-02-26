@@ -8,7 +8,7 @@ interface CommentCardProps {
 
 const CommentCard = ({comment}: CommentCardProps) => {
   return (
-    <Card>
+    <Card className='my-2 rounded-md p-2 flex gap-2'>
         <Avatar>
             {comment.name[0]}
         </Avatar>

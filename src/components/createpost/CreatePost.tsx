@@ -24,13 +24,14 @@ const CreatePost = () => {
 
     }
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-3 bg-white p-2 rounded-lg'>
         <h3>Add a Post</h3>
-        <div>
+        <div >
         <TextField
           id="outlined-multiline-flexible"
           label="Heading"
           fullWidth
+          sx={{mb: 3}}
           value={title}
           onChange={e => setTitle(e.target.value)}
         />
@@ -45,7 +46,7 @@ const CreatePost = () => {
         />
         </div>
 
-        <Button type='submit'  fullWidth variant='contained' endIcon={<AddCircleIcon/>}>Create</Button>
+        <Button type='submit' sx={{p: 1, color: '#fff' }}  fullWidth variant='contained' endIcon={<AddCircleIcon/>}>Create</Button>
 
     </form>
   )
