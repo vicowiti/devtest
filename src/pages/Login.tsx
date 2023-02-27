@@ -6,7 +6,8 @@ import Logo from '../assets/logo.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../features/userSlice';
 import Spinner from '../components/spinner/Spinner';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 const Login = () => {
 
@@ -14,7 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const userData = useSelector(state => state.user)
+  const userData = useSelector(state: any => state.user)
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -51,6 +52,7 @@ const Login = () => {
         </form>
 
       </div>
+      <Typography><Link to='/register'>Sign Up</Link></Typography>
     </Stack>
   )
 }

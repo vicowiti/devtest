@@ -7,6 +7,11 @@ interface UserState {
     isError : boolean
 }
 
+interface UserData {
+    email: string
+    password: string
+}
+
 const initialState:UserState = {
 
     user: JSON.parse(localStorage.getItem('user') as string) || {},
@@ -14,7 +19,7 @@ const initialState:UserState = {
     isError:false
 }
 
-export const loginUser = createAsyncThunk('loginUser', async(userData) => {
+export const loginUser = createAsyncThunk('loginUser', async(userData : UserData ) => {
 
     const response = await axios.post('https://pleasant-sheath-dress-crab.cyclic.app//auth/login', userData)
 
